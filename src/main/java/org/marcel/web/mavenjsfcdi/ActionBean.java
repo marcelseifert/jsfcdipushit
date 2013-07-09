@@ -25,6 +25,7 @@ public class ActionBean implements Serializable{
     public void doAction() {
         System.out.println("fire Event");
         eventQueue.fire( new MyEvent() );
+         System.out.println("an back to jsf");
     }
     
 }

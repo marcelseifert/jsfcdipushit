@@ -12,19 +12,22 @@
      <script>
           function closureMessage(id) { 
               var stringId ='#{view.getClientId(facesContext)}'+id; 
+           
               return function handleMessage(data) { 
-                  jsf.ajax.request( document.getElementById(stringId), null, 
+                  jsf.ajax.request( document.getElementById(id), null, 
                   { execute: '@none', 
-                    render: stringId } );
+                    render: id } );
                     } }
   
      </script>
     <h:body>
   
-        <p:socket id="socket" channel="/CHANNEL"  onMessage="closureMessage(':form:outLabel')" />
+        <p:socket id="socket" channel="#{channelBean.eventchannel}"   >
+            <p:ajax event="message" update=":form:outLabel" />
+        </p:socket>
         <h:form id="form">
             <h:outputLabel id="outLabel" value="#{infoBean.value}" /><br/>
-            <h:commandButton action="#{actionBean.doAction()}" value="fire" />
+            <p:commandButton action="#{actionBean.doAction()}" value="fire" />
             
         </h:form>
     </h:body>
