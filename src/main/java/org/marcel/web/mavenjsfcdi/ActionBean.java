@@ -23,6 +23,7 @@ public class ActionBean implements Serializable{
     private Event<MyEvent> eventQueue;
     
     public void doAction() {
+        System.out.println("fire Event");
         eventQueue.fire( new MyEvent() );
     }
     

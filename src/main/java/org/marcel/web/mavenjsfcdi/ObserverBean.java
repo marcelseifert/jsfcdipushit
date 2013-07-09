@@ -25,7 +25,8 @@ public class ObserverBean {
     @Inject
     private InfoBean bean;
      
-    public void observer(@Observes(notifyObserver = Reception.IF_EXISTS) MyEvent event) {
+    public void observer(@Observes MyEvent event) {
+        System.out.println("observer run...");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
