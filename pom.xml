@@ -17,9 +17,9 @@
  
     <dependencies>
         <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>ejb-api</artifactId>
-            <version>3.0</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version> 
         </dependency>
        
         <!-- JSF 2.x Begin -->
@@ -46,7 +46,7 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
-            <version>1.1</version>
+            <version>1.1-PRD</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.web</groupId>

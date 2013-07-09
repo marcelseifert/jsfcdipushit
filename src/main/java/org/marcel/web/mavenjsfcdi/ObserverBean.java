@@ -8,7 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger; 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
-import javax.enterprise.event.Reception; 
+import javax.enterprise.event.Reception;
+import javax.ejb.Asynchronous;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.push.PushContext;
@@ -25,10 +26,11 @@ public class ObserverBean {
     @Inject
     private InfoBean bean;
      
+    @Asynchronous
     public void observer(@Observes MyEvent event) {
-        System.out.println("observer run...");
+        System.out.println("observer run...waiting 10sec");
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ObserverBean.class.getName()).log(Level.SEVERE, null, ex);
         }
