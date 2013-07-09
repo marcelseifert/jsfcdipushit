@@ -28,7 +28,7 @@ public class ObserverBean {
     @Inject
     private ChannelBean channel;
     
-    
+    @FutureSupport
     public void observer(@Observes MyEvent event) {
         System.out.println("observer run...waiting 10sec");
         try {

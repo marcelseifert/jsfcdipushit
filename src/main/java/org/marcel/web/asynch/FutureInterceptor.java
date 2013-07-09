@@ -19,8 +19,8 @@ import java.util.logging.Logger;
  *
  * @author Marcel
  */
-@Interceptor
 @FutureSupport
+@Interceptor
 public class FutureInterceptor implements Serializable
 {
     private static final long serialVersionUID = 7938266823530974338L;
@@ -30,8 +30,8 @@ public class FutureInterceptor implements Serializable
     public Object executeAsynchronous(final InvocationContext invocationContext) throws Exception
     {
         System.out.println("executeAsynchronous start");
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-
+         
+        
         try
         {
              Runnable worker = new Runnable() {
@@ -39,6 +39,7 @@ public class FutureInterceptor implements Serializable
                  @Override
                  public void run() {
                      try { 
+                         System.out.println("worker proceed context");
                          invocationContext.proceed();
                      } catch (Exception ex) {
                          ex.printStackTrace();
@@ -46,13 +47,12 @@ public class FutureInterceptor implements Serializable
                      }
                  }
              };
-             executor.submit(worker);
+             new Thread(worker).start();
              
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        finally
-        {
-            executor.shutdown(); //won't stop immediately
-        }
-        return null;
+         
+        return null; 
     }
 }
