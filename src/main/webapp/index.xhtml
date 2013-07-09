@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head> 
+    </h:head>
+    
+     <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+
+     <script>
+          function closureMessage(id) { 
+              var stringId ='#{view.getClientId(facesContext)}'+id; 
+              return function handleMessage(data) { 
+                  jsf.ajax.request( document.getElementById(stringId), null, 
+                  { execute: '@none', 
+                    render: stringId } );
+                    } }
+  
+     </script>
+    <h:body>
+  
+        <p:socket id="socket" channel="/CHANNEL"  onMessage="closureMessage(':form:outLabel')" />
+        <h:form id="form">
+            <h:outputLabel id="outLabel" value="#{infoBean.value}" /><br/>
+            <h:commandButton action="#{actionBean.doAction()}" value="fire" />
+            
+        </h:form>
+    </h:body>
+</html>
