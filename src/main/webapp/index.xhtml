@@ -22,7 +22,7 @@
      </script>
     <h:body>
   
-        <p:socket id="socket" channel="#{channelBean.eventchannel}"   >
+        <p:socket id="socket" channel="#{channelBean.eventchannel}" >
             <p:ajax event="message" update=":form:outLabel" />
         </p:socket>
         <h:form id="form">
